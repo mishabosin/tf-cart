@@ -1,5 +1,5 @@
 var http = require('http');
-var static = require('node-static');
+var CachedStatic = require('./lib/cached-static');
 
 var Storage = require('./lib/storage');
 
@@ -47,7 +47,7 @@ function onJsonRead(req, res, cb) {
   });
 }
 
-var fileServer = new static.Server('./public');
+var fileServer = new CachedStatic('/index.html');
 
 var server = http.createServer(function (req, res) {
   var urlParams = parseParams(req.url);
